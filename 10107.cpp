@@ -1,25 +1,30 @@
 #include <bits/stdc++.h>
-#define WF( f , str ) fprintf(f,"%lld\n",str)
+// #define WF( f , str ) fprintf(f,"%lld\n",str)
 
 typedef long long int ll;
+
+
 
 using namespace std;
 
 int main (){
 
-  FILE *fp;
-    fp = fopen("write.txt", "w");
+  // FILE *fp;
+  //   fp = fopen("write.txt", "w");
+  //
+  //   if(!fp)
+  //   {
+  //
+  //     cout << " ERROR" << endl;
+  //     exit(0);
+  //   }
 
-    if(!fp)
-    {
+  // 
+  // ofstream myfile;
+  // myfile.open ("write.txt");
 
-      cout << " ERROR" << endl;
-      exit(0);
-    }
+  vector<ll> my_set;
 
-  set <ll > my_set;
-
-  std::set<ll>::iterator it;
 
  ll N ;
 
@@ -27,51 +32,56 @@ int main (){
 
    //cout << N << endl;
 
-    my_set.insert(N);
+    my_set.push_back(N);
 
-    it = my_set.begin();
+    sort( my_set.begin() , my_set.end());
 
-    ll size = my_set.size();
+    int size = my_set.size();
 
     if(size & 1){
 
 
-      ll ind = (size/2);
+      int ind = (size/2);
 
       // if( ind > 0)
       //     ind -= 1;
 
-      std::advance(it, ind);
-      ll x = *it;
 
-      cout<< x << endl;
+      ll x = my_set.at(ind);
 
-      WF( fp, x);
+      //myfile  << "Index :: " << ind << " Value :: "<< x << endl;
+
+      cout << x << endl;
+
+      //myfile << x << endl;
+
+      // WF( fp, x);
 
     }else{
 
-      ll ind = (size/2)-1;
+      ll ind = (size /2 ) -1 ;
 
-      std::advance(it, ind);
+      ll a = my_set.at(ind);
 
-      ll a = *it;
+      ll b = my_set.at(ind + 1);
 
-
-      std::advance(it, 1);
-
-
-
-      ll b = *it;
 
       ll r = (a+b)/2;
-       cout<< r << endl;
 
-       WF( fp, r);
+      //myfile << "Index:: " << ind << " Value:: " <<  a << " :: " << " Index " << ind+1 << " :: "<< b << " :: " << r << endl;
+
+      //myfile << r << endl;
+
+      cout << r << endl;
+
+       //WF( fp, r);
     }
 
  }
 
- fclose(fp);
+
+  //myfile.close();
+ //fclose(fp);
 
 return 0;
 }
