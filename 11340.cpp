@@ -7,9 +7,21 @@ typedef std::numeric_limits< long double > dbl;
 
 using namespace std;
 
+
+
 int main ()
 {
 
+
+  FILE *fp;
+    fp = fopen("write.txt", "w");
+
+    if(!fp)
+    {
+
+      cout << " ERROR" << endl;
+      exit(0);
+    }
 
 ll N,M,K ;
 char map_c;
@@ -81,18 +93,20 @@ while(  N-- ){
     }
 
 
-        printf("%.2f",sum/100);
-        printf("$\n");
+
+
+        printf("%.2f$\n",sum/100);
+
+        fprintf(fp,"%.2f$\n",sum/100);
+
 
 //    cout.precision(3);
 //    cout << sum/(double)100 << '$' << endl;
 }
 
 
-  //fclose(f);
+fclose(fp);
+
   return 0;
 
 }
-
-
-
