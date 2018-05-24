@@ -3,7 +3,6 @@
 
 typedef long long int ll ;
 
-typedef std::numeric_limits< long double > dbl;
 
 using namespace std;
 
@@ -13,15 +12,15 @@ int main ()
 {
 
 
-  FILE *fp;
-    fp = fopen("write.txt", "w");
-
-    if(!fp)
-    {
-
-      cout << " ERROR" << endl;
-      exit(0);
-    }
+  // FILE *fp;
+  //   fp = fopen("write.txt", "w");
+  //
+  //   if(!fp)
+  //   {
+  //
+  //     cout << " ERROR" << endl;
+  //     exit(0);
+  //   }
 
 ll N,M,K ;
 char map_c;
@@ -31,81 +30,60 @@ string str;
 
 scanf("%lld" , &N);
 
-while(  N-- ){
+if( N > 0 && N <= 5){
 
-    map< char, int > mp;
-    map<char, int>::iterator it ;
+  while(  N-- ){
 
-//    mp['a']=5;
-//    mp['b']=10;
+      map< char, int > mp;
+      map<char, int>::iterator it ;
 
-    //it = mp.find('b');
+      double sum = 0;
 
-//    if(it == mp.end())
-//        cout << "Key-value pair not present in map" ;
-//    else
-//        cout << "Key-value pair present : "
-//          << it->first << "->" << it->second ;
-//
-//    cout << endl ;
+      bool calc = false;
 
+      scanf("%lld" , &K);
 
+      if( K > 0 && K <= 100 ){
 
-    scanf("%lld" , &K);
-
-
-
-    while(  K-- ){
-
-
-        scanf(" %c %d" , &map_c,&map_int);
-
-
-        mp[map_c] = map_int;
-    }
-
-    scanf("%lld" , &M);
-
-     cin.ignore();
-
-     float sum = 0;
-
-    while( M--  ){
-
-
-        getline( cin , str);
-
-        for(int i=0 ; i< str.length() ; i++){
-
-
-            it = mp.find(str[i]);
-
-            if(it != mp.end())
-                sum += it->second;
+          while(  K-- ){
+              scanf(" %c %d" , &map_c,&map_int);
+              mp[map_c] = map_int;
+          }
 
         }
 
+          scanf("%lld" , &M);
+           cin.ignore();
 
-         //for( int i=0 ; i<)
+          if( M > 0 && M <= 150000 ){
 
+            calc = true;
 
+           while( M--  ){
+
+               getline( cin , str);
+
+               for(int i=0 ; i< str.length() ; i++){
+                   it = mp.find(str[i]);
+                   if(it != mp.end())
+                       sum += it->second;
+               }
+          }
+
+          printf("%.2f$\n",sum/100);
+          // fprintf(fp,"%.2f$\n",sum/100);
+      }
+
+      if( !calc ){
+
+        printf("0.00$\n");
+        // fprintf(fp,"0.00$\n");
+      }
 
     }
-
-
-
-
-        printf("%.2f$\n",sum/100);
-
-        fprintf(fp,"%.2f$\n",sum/100);
-
-
-//    cout.precision(3);
-//    cout << sum/(double)100 << '$' << endl;
 }
 
-
-fclose(fp);
+// fclose(fp);
 
   return 0;
 
