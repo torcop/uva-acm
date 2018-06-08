@@ -1,1 +1,6 @@
-0.00$
+Set #1
+The minimum number of moves is 2.
+
+Set #2
+The minimum number of moves is 9.
+

@@ -1,54 +1,141 @@
 #include <bits/stdc++.h>
+using namespace std;
+
 
 typedef long long int ll;
 
-using namespace std;
+typedef vector<ll> vlls;
 
-ll get_cost( string num_str ){
+typedef priority_queue <ll, vector< ll >, greater< ll > > pqg;
 
-  ll x = (ll)num_str[0];
+  ofstream myfile;
+  
+
+void get_cost( vlls& lls, pqg& pq){
+
+
+  myfile << " ############# " << endl;
+
+  ll x = lls[0] ;
   ll cost = 0;
-  for(int i = 1; i<num_str.length();i++ ){
 
-    x += (ll)num_str[i];
+  myfile << x << " ";
+
+
+  for(ll i = 1; i<lls.size();i++ ){
+
+    myfile << lls[i] << " ";
+
+    x += lls[i];
     cost += x;
 
   }
 
-  return cost;
+    myfile << endl ;
+
+    myfile << "Cost::" << cost << endl;
+
+
+      myfile << " ############# " << endl;
+
+
+  pq.push( cost ) ;
 }
+
+
+// Generating permutation using Heap Algorithm
+void heapPermutation(vlls &lls , pqg& pq , ll size )
+{
+
+
+    // if size becomes 1 then prints the obtained
+    // permutation
+    if (size == 1)
+    {
+        get_cost(lls, pq);
+        return;
+    }
+ 
+    for (ll i=0; i<size; i++)
+    {
+        heapPermutation( lls , pq , size-1 );
+ 
+        // if size is odd, swap first and last
+        // element
+        if (size%2==1)
+            swap(lls[0], lls[size-1]);
+ 
+        // If size is even, swap ith and last
+        // element
+        else
+            swap(lls[i], lls[size-1]);
+    }
+}
+
 
 int main (){
 
-
-  priority_queue <ll, vector<ll>, greater<ll> > pq;
-
-
- ll N ;
-
- ll total_cost = 0;
-
-char str[100000];
-
- while( scanf("%s",&str) == 1  ){
-
-   if( (ll)str == 0 )
-    break;
-
-  // string num_str = string(str) ;
-  //
-  // while( next_permutation(num_str.begin(), num_str.end()) ){
-  //
-  //       pq.push( get_cost( num_str ) );
-  //
-  // }
+ ll N , inp ;
 
 
-    //cout<< pq.top() << endl;
-  //
-  cout << str << endl;
+  myfile.open ("write.txt");
 
- }
+
+
+while( scanf("%lld",&N) == 1){
+
+  if( N == 0) break;
+
+if( N >= 2 && N < 5000 ) {
+
+  vector<ll> lls;
+
+   pqg pq;
+
+  while( N-- ){
+
+    scanf("%lld",&inp);
+
+    if( inp < 100000 ){
+      lls.push_back( inp );
+    }
+  }
+
+  
+  //heapPermutation( lls , pq , lls.size());
+
+
+  std::sort (lls.begin(),lls.end());
+
+  do {
+    
+
+    get_cost( lls , pq );
+
+  } while ( std::next_permutation(lls.begin(),lls.end()) );
+
+
+
+
+   cout << pq.top() << endl;
+
+    myfile << "Result::" << pq.top() << endl;
+
+
+  //  while (!pq.empty()) {
+  //      cout << pq.top() << endl;  // Print highest priority string
+  //      pq.pop();                    // Remmove highest priority string
+  //   }
+  
+  
+
+
+}
+
+}
+
+
+ myfile.close();
 
 
 return 0;
