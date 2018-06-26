@@ -12,35 +12,33 @@ typedef vector<ll> vlls;
 
 int main (){
 
- ll N , inp , round = 0;
+ int N , inp , round = 0;
 
 
-
+int a, b,c, d,e, f, g, h, i, j;
 
  // myfile.open ("write.txt");
 
 scanf("%lld",&N);
 
+cout << "Lumberjacks:" << endl;
 while( N--){
 
+    scanf("%d %d %d %d %d %d %d %d %d %d",&a, &b,&c, &d,&e, &f,&g, &h,&i, &j);
 
-  vlls lls;
+    if( a < b && b < c && c < d && d < e && e< f && f< g && g < h && h < i && i< j ){
 
-  std::string line;
-  getline(std::cin, line);
-  std::istringstream iss(line);
-  while (iss >> inp)
-  {
-    lls.push_back(inp);
-  }
 
-  vlls::iterator it;  // declare an iterator to a vector of strings
+        cout << "Ordered" << endl;
+    }
+    else if( a > b && b > c && c > d && d > e && e > f && f > g && g > h && h > i && i > j ){
 
-  for(it = lls.begin(); it != lls.end(); it++ )    {
 
-        cout<< *it << endl;
+        cout << "Ordered" << endl;
+    } else {
 
-  }
+        cout << "Unordered" << endl;
+    }
 
    //
    // myfile << "Set #" << round << endl;
