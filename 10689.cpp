@@ -418,7 +418,8 @@ int main ()
 
 myfile.open ("write.txt");
 
-int n , m , a1 ,b1 ,t ;
+int t;
+long long  n , m , a1 ,b1  ;
 
 string str;
 
@@ -432,7 +433,7 @@ scanf("%d",&t);
 while( t-- ){
 
 
-    scanf( "%d %d %d %d",&a1,&b1,&n,&m );
+    scanf( "%lld %lld %lld %lld",&a1,&b1,&n,&m );
 
     a = bigint( a1 );
 

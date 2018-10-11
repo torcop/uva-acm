@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+typedef long long int ll;
+
+using namespace std;
+
+int main (){
+
+  set <ll > my_set;
+
+ ll N ;
+
+ while( scanf("%lld",&N) != EOF  ){
+
+   cout << N << endl;
+
+    // insert elements in random order
+    // my_set.insert(N);
+
+
+    // std::set<ll>::iterator it = my_set.begin();
+
+    // ll size = my_set.size();
+
+    // if(size & 1){
+
+    //   std::advance(it, size/2);
+    //   ll x = *it;
+
+    //   cout<< x << endl;
+    // }else{
+
+    //   ll ind = size/2;
+    //   std::advance(it, ind);
+    //   ll a = *it;
+    //   std::advance(it, ind+1);
+    //   ll b = *it;
+
+    //    cout<< (a+b)/2 << endl;
+    // }
+
+ }
+
+
+return 0;
+}

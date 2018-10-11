@@ -45,21 +45,20 @@ while( getline( cin , str ) ){
     }
 
 
-
-    if(isDivBy9(sum,++count)){
-
-
-        cout << str <<" is a multiple of 9 and has 9-degree "<< count <<"."<< endl;
-
-        myfile << str <<" is a multiple of 9 and has 9-degree "<< count <<"."<< endl;
-
-    }else{
-
-        cout << str <<" is not a multiple of 9." << endl;
-
-        myfile << str <<" is not a multiple of 9." << endl;
-
-    }
+    int degree = 1;
+   while (sum > 9) {
+			degree++;
+			int b4 = sum;
+			sum = 0;
+			while (b4) {
+				sum += b4 % 10;
+				b4 /= 10;
+			}
+		}
+		if (sum == 9)
+			cout << str << " is a multiple of 9 and has 9-degree " << degree << ".\n";
+		else
+			cout << str << " is not a multiple of 9.\n";
 
     str = "";
 

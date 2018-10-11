@@ -3,7 +3,7 @@
 
 typedef long long int  ll ;
 
-const ll MAX = 20000000;
+const ll MAX = 20000010;
 
 const ll CONT = 100002;
 
@@ -15,15 +15,16 @@ ofstream myfile;
 
 bool prime[MAX];
 
+int twin_prime[MAX];
+
 
 ll idx = 0;
 
 //ll primes[CONT];
 typedef pair<ll,ll> pp;
 
-map<ll,pp> twin_prime;
 
-void SieveOfEratosthenes()
+void SieveOfEratosthenes(map<ll,pp>& twin_prime_map)
 {
 
     for(ll i=0;i<MAX;i++)
@@ -34,7 +35,9 @@ void SieveOfEratosthenes()
      ll previous = 0;
      ll count =0;
 
-    for (ll p=2; p*p< MAX; p++)
+     int n=sqrt(MAX);
+
+    for (ll p=3; p*p<=MAX; p++)
     {
         // If prime[p] is not changed, then it is a prime
         if (prime[p] == true)
@@ -43,48 +46,61 @@ void SieveOfEratosthenes()
             for (ll i=p*2; i<=MAX; i += p)
                 prime[i] = false;
 
-
-
-             //
         }
 
+    }
+
+
+    int j = 1;
+
+     for (ll p=3; p< MAX; p++)
+    {
+        // If prime[p] is not changed, then it is a prime
+
+       if(prime[ p ] && prime[ p +2]){
+
+            //twin_prime[j++] = p;
+
+            //twin_prime[j++] = p+2;
 
 
 
+//
+//        cout <<  p << " , " <<  p +2 << endl;
+//
+//        myfile << p << " , " << p+2 << endl;
+
+
+        twin_prime_map[j++] = make_pair(p,p+2);
+
+       }
 
 
     }
 
-    for (ll p=2; p< MAX; p++)
-    {
-
-
-     if( prime[p]  && prime[p+2]){
-
-
-        twin_prime[++count] = make_pair(p,p+2);
-
-            // &&  previous == (p - 2) && prime[previous]
-
-
-//           primes[++count] = p;
+//        for (ll p=1; p< j; p++)
+//    {
+//        // If prime[p] is not changed, then it is a prime
 //
-//           primes[++count] = p+2;
+//
+//            //twin_prime[j++] = p;
+//
+//
+//
+//
+////        cout <<  p<< " , " << twin_prime[p] << endl;
+////
+////        myfile << p << " , " << twin_prime[p] << endl;
+//
+//
+//
+//    }
 
 
-
-             //cout << count << " :: " << p << " :: " << p+2 << endl;
-
-        }
-
-        if( count >= CONT)
-            break;
 
 
 }
 
-
-}
 
 
 int main ()
@@ -95,17 +111,19 @@ myfile.open ("write.txt");
 
 ll n , m;
 
-SieveOfEratosthenes();
+map<ll,pp> twin_prime_map;
 
-//
-//for(int i=0 ; i< CONT;i++){
-//
-//    cout << i << " :: " << twin_prime[i].first << " :: " << twin_prime[i].second <<endl;
-//}
+SieveOfEratosthenes(twin_prime_map);
+
+
+
 
 //sort(primes.begin(),primes.end());
 
 //map<int,int> maps;
+
+
+
 
 
 
@@ -122,41 +140,17 @@ while( scanf("%lld",&n) == 1){
 
 
 
-//        int count = 0;
-//
-//        while( !prime[x] || !prime[x+2]  || (++count != n) ){
-//
-//            x++;
-//            //break;
-//        }
 
-        cout << "("<< twin_prime[x].first << ", " << twin_prime[x].second << ")" << endl;
+        cout << "("<< twin_prime_map[x].first << ", " << twin_prime_map[x].second << ")" << endl;
 
-        myfile << "("<< twin_prime[x].first << ", " << twin_prime[x].second << ")" << endl;
-
-//        for(int i = 2; i < n; i++){
-//
-//            if( prime[i] ){
-//                int diff = n -i;
-//                if( prime[diff] ){
-//                   //cout << " ( " << i << " , " << diff << " ) " << endl;
-//                    maps[min(i,diff)] = max(i,diff);
-//
-//                    ++count;
-//                }
-//
-//            }
-//        }
+        myfile << "("<< twin_prime_map[x].first << ", " << twin_prime_map[x].second << ")" << endl;
 
 
-//        cout << maps.size() << endl;
-//
-//        myfile << maps.size() << endl;
 
-        //maps.clear();
 }
 
 
+twin_prime_map.clear();
 
 
 myfile.close();

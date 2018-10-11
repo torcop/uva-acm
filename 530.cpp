@@ -8,19 +8,20 @@ using namespace std;
 
 ll binomialCoeff(ll n, ll k)
 {
-    ll C[k+1];
-    memset(C, 0, sizeof(C));
+    ll res = 1;
 
-    C[0] = 1;  // nC0 is 1
+    // Since C(n, k) = C(n, n-k)
+    if ( k > n - k )
+        k = n - k;
 
-    for (ll i = 1; i <= n; i++)
+    // Calculate value of [n * (n-1) *---* (n-k+1)] / [k * (k-1) *----* 1]
+    for (ll i = 0; i < k; ++i)
     {
-        // Compute next row of pascal triangle using
-        // the previous row
-        for (ll j = min(i, k); j > 0; j--)
-            C[j] = C[j] + C[j-1];
+        res *= (n - i);
+        res /= (i + 1);
     }
-    return C[k];
+
+    return res;
 }
 
 ofstream myfile;
