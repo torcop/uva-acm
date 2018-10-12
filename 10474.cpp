@@ -44,10 +44,12 @@ int k,count = 0 ;
 
 int numb = 0 ;
 
-while(   scanf("%d %d",&n,&q) == 2 ){
-
 vector<int> v;
 
+while(   scanf("%d %d",&n,&q) == 2 ){
+
+
+    v.clear();
 
     if( n == 0 && q == 0 )
         break;
@@ -60,13 +62,6 @@ vector<int> v;
     }
       std::sort (v.begin(), v.end());
 
-      vector<int>::iterator it;
-
-      for(it = v.begin(); it != v.end(); it++ )    {
-
-            cout << "XX :: "<<*(it) << endl;
-
-        }
 
 
       cout << "CASE# " << ++numb << ":"<<endl;
@@ -76,12 +71,14 @@ vector<int> v;
     while(q--){
 
         scanf("%d",&e);
-         int result = binarySearch(&v[0],0,v.size()-1,e);
 
-         if( result > -1 ){
-            cout << e << " found at " << result <<endl;
+         std::vector<int>::iterator low,up;
+        low=std::lower_bound (v.begin(), v.end(), e); //
 
-            myfile << e << " found at " << result <<endl;
+         if( low != v.end() && *low == e){
+            cout << e << " found at " << (low- v.begin()) +1 <<endl;
+
+            myfile << e << " found at " << (low- v.begin()) +1<<endl;
 
          }
 
